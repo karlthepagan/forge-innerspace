@@ -1,0 +1,16 @@
+[
+{
+  "modid": "innerspace",
+  "name": "InnerSpace",
+  "description": "Miniturized physical Minecraft circuits.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://minecraft.curseforge.com/projects/innerspace",
+  "updateUrl": "",
+  "authorList": ["KarlThePagan"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

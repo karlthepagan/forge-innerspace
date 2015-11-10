@@ -1,6 +1,5 @@
-package karl.codes.minecraft.innerspace.tileentity;
+package karl.codes.minecraft.tileentity;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -8,8 +7,8 @@ import net.minecraft.tileentity.TileEntity;
  *
  * TODO Milestone 0
  */
-public class TileEntityInnerSpace extends TileEntity {
-    public TileEntityInnerSpace(int metadata) {
+public class TileEntityCircuit extends TileEntity {
+    public TileEntityCircuit(int metadata) {
         // TODO rehydrate circuit from template defined by metadata, tileentitiy holds information about
     }
 }

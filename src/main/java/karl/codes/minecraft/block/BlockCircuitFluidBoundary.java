@@ -1,4 +1,4 @@
-package karl.codes.minecraft.innerspace.block;
+package karl.codes.minecraft.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.BlockFluidFinite;
@@ -9,8 +9,8 @@ import net.minecraftforge.fluids.Fluid;
  *
  * TODO Milestone 2
  */
-public class BlockInnerSpaceFluidBoundary extends BlockFluidFinite {
-    public BlockInnerSpaceFluidBoundary(Fluid fluid, Material material) {
+public class BlockCircuitFluidBoundary extends BlockFluidFinite {
+    public BlockCircuitFluidBoundary(Fluid fluid, Material material) {
         super(fluid, material);
     }
 }

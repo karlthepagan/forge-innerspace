@@ -1,11 +1,12 @@
-package karl.codes.minecraft.innerspace.block;
+package karl.codes.minecraft.block;
 
-import karl.codes.minecraft.innerspace.tileentity.TileEntityInnerSpace;
+import karl.codes.minecraft.tileentity.TileEntityCircuit;
 import net.minecraft.block.BlockRedstoneComparator;
 import net.minecraft.block.BlockRedstoneDiode;
 import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -17,15 +18,18 @@ import net.minecraftforge.fluids.BlockFluidBase;
  *
  * TODO Milestone 0
  */
-public class BlockInnerSpace extends BlockRedstoneDiode implements ITileEntityProvider {
+public class BlockCircuit extends BlockRedstoneDiode implements ITileEntityProvider {
     // communicate neighbor state changes from many blocks:
     BlockRedstoneWire wire;
     BlockRedstoneComparator comparator;
     // next milestone?
     BlockFluidBase fluid;
 
-    protected BlockInnerSpace(boolean powered) {
-        super(powered);
+    public BlockCircuit() {
+        super(false);
+
+        setCreativeTab(CreativeTabs.tabRedstone);
+
     }
 
     @Override
@@ -45,7 +49,7 @@ public class BlockInnerSpace extends BlockRedstoneDiode implements ITileEntityPr
 
     @Override
     public TileEntity createNewTileEntity(World world, int i) {
-        return new TileEntityInnerSpace(i);
+        return new TileEntityCircuit(i);
     }
 
     @Override

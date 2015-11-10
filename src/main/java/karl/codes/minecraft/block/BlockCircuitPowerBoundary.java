@@ -1,4 +1,4 @@
-package karl.codes.minecraft.innerspace.block;
+package karl.codes.minecraft.block;
 
 import net.minecraft.block.BlockRedstoneDiode;
 import net.minecraft.block.state.IBlockState;
@@ -8,8 +8,8 @@ import net.minecraft.block.state.IBlockState;
  *
  * TODO Milestone 1
  */
-public class BlockInnerSpaceRedstoneBoundary extends BlockRedstoneDiode {
-    protected BlockInnerSpaceRedstoneBoundary(boolean powered) {
+public class BlockCircuitPowerBoundary extends BlockRedstoneDiode {
+    protected BlockCircuitPowerBoundary(boolean powered) {
         super(powered);
     }
 

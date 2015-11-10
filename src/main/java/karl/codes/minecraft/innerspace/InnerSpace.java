@@ -1,12 +1,14 @@
 package karl.codes.minecraft.innerspace;
 
+import karl.codes.minecraft.block.BlockCircuit;
+import karl.codes.minecraft.item.ItemCircuit;
+import karl.codes.minecraft.world.WorldProviderCircuits;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockRedstoneWire;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -29,16 +31,24 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class InnerSpace {
     public static final String MODID = "innerspace";
 
-    public static Item redstone_circuit;
+    private Item redstone_circuit;
+    private BlockCircuit redstone_circuit_block;
+    private Block redstone_circuit_power_tap;
+    private Block redstone_circuit_fluid_tap;
 
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event) {
-        redstone_circuit = new Item()
-                .setMaxStackSize(64)
-                .setHasSubtypes(true)
-                .setCreativeTab(CreativeTabs.tabRedstone)
-                .setUnlocalizedName("redstone_circuit");
-        GameRegistry.registerItem(redstone_circuit,"redstone_circuit",MODID);
+        redstone_circuit_block = new BlockCircuit();
+
+        GameRegistry.registerBlock(redstone_circuit_block,ItemCircuit.class,"redstone_circuit");
+
+        redstone_circuit = new ItemCircuit(redstone_circuit_block);
+
+        GameRegistry.registerItem(redstone_circuit, "redstone_circuit", MODID);
+
+        int innerSpaceDimensionId = DimensionManager.getNextFreeDimId();
+
+        DimensionManager.registerProviderType(innerSpaceDimensionId, WorldProviderCircuits.class, true);
     }
 
     @Mod.EventHandler

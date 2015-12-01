@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fml.common.IFuelHandler;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
         useMetadata = true,
         modid = InnerSpace.MODID,
         acceptedMinecraftVersions = "[1.8,1.9)",
-        canBeDeactivated = false)
+        canBeDeactivated = false) // true - upon deactivation, clean up circuits? archive dimensions?
 @SideOnly(Side.SERVER)
 public class InnerSpace {
     public static final String MODID = "innerspace";
@@ -46,9 +47,22 @@ public class InnerSpace {
 
         GameRegistry.registerItem(redstone_circuit, "redstone_circuit", MODID);
 
+        // http://www.wuppy29.com/minecraft/modding-tutorials/wuppys-minecraft-forge-modding-tutorials-for-1-6-2-dimensions-part-1-registry-and-worldprovider/#sthash.HopPoXC6.dpbs
+        IWorldGenerator gen = null;
+        GameRegistry.registerWorldGenerator(gen, 0);
+
+        // TODO dynamically assign dimensionId, see WorldSavedData http://www.minecraftforge.net/forum/index.php?topic=5722.0
+        // TODO or WorldAccessContainer (core mod?)
         int innerSpaceDimensionId = DimensionManager.getNextFreeDimId();
 
-        DimensionManager.registerProviderType(innerSpaceDimensionId, WorldProviderCircuits.class, true);
+        registerDimensionId(innerSpaceDimensionId);
+    }
+
+    public void registerDimensionId(int id) {
+//        DimensionManager.registerProviderType(innerSpaceDimensionId, WorldProviderCircuits.class, true);
+        DimensionManager.registerDimension(id, 0); // overworld provider (surface)
+
+        // TODO expose dimension id
     }
 
     @Mod.EventHandler
@@ -67,4 +81,6 @@ public class InnerSpace {
             return 0;
         }
     }
+
+    // TODO for ClientSide 3rd person perspective wouldn't it be great to cull all surfaces coplanar with the roof over the player
 }
